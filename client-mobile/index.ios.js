@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react-native');
-var HomeView = require('./ios/Components/homeView');
+var TabView = require('./ios/Components/TabView');
 
 var {
   AppRegistry,
@@ -19,7 +19,7 @@ var Knead = React.createClass({
     return (
       <NavigatorIOS
         initialRoute={{
-          component: HomeView,
+          component: TabView,
           title: 'knead'
         }}
         style={styles.container}

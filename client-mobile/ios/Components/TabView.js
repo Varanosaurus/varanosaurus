@@ -1,9 +1,10 @@
 'use strict';
 
 var React = require('react-native');
-var Household = require('./household');
-var Reckoning = require('./reckoning');
-var More = require('./more');
+var Household = require('./Household');
+var Reckoning = require('./Reckoning');
+var More = require('./More');
+var ItemList = require('./ItemList');
 
 var {
   // StyleSheet,
@@ -13,7 +14,7 @@ var {
   Text,
 } = React;
 
-var HomeView = React.createClass({
+var TabView = React.createClass({
 
   getInitialState: function() {
     return {
@@ -24,7 +25,7 @@ var HomeView = React.createClass({
   render: function() {
     return (
       <TabBarIOS selectedTab={this.state.selectedTab}>
-        
+
         <TabBarIOS.Item
           selected={this.state.selectedTab === 'household'}
           title='Household'
@@ -34,10 +35,10 @@ var HomeView = React.createClass({
             });
           }}
         >
-        <Household />
+        <ItemList />
         </TabBarIOS.Item>
-    
-    
+
+
         <TabBarIOS.Item
           selected={this.state.selectedTab === 'reckoning'}
           title='Reckoning'
@@ -99,4 +100,4 @@ var HomeView = React.createClass({
 // });
 
 
-module.exports = HomeView;
+module.exports = TabView;
