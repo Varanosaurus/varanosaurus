@@ -1,5 +1,3 @@
-'use strict';
-
 var React = require('react-native');
 
 var {
@@ -9,28 +7,18 @@ var {
   Text,
 } = React;
 
-var Root = React.createClass({
-  signUp: function() {
-    this.props.navigator.push({
-      index: 1,
-      id: 'Sign up'
-    })
-  },
+var InvitedToHH = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
+        <Text>JOIN A HH VIEW -INVITED- IS WORKING</Text>
+        <Text> ----- OR ----- </Text>
         <TouchableHighlight
           style={styles.button}
-          onPress={() => this.signUp()}
+          // onPress={() => this.()}
         >
-          <Text style={styles.btnText}>Sign Up</Text>
+          <Text style={styles.btnText}>Create New Household</Text>
 
-        </TouchableHighlight>
-        <TouchableHighlight 
-          style={styles.button}
-          onPress={() => this.login()}
-        >
-          <Text style={styles.btnText}>Login</Text>
         </TouchableHighlight>
       </View>
     );
@@ -43,8 +31,13 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white'
   },
+  input: {
+    height: 40, 
+    borderColor: 'gray', 
+    borderWidth: 1
+  },
   button: {
-    height: 36,
+    height: 15,
     flex: 1,
     margin: 2,
     backgroundColor: 'black',
@@ -57,4 +50,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = Root;
+module.exports = InvitedToHH;

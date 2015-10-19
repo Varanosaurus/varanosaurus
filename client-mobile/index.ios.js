@@ -3,14 +3,15 @@
 var React = require('react-native');
 var Root = require('./ios/Components/Root');
 var SignUp = require('./ios/Components/SignUp');
+var NotInvitedToHH = require('./ios/Components/NotInvitedToHH');
+var InvitedToHH = require('./ios/Components/InvitedToHH');
+var CreateNewHH = require('./ios/Components/CreateNewHH');
 
 var {
   AppRegistry,
   StyleSheet,
   Navigator,
 } = React;
-
-
 
 var Knead = React.createClass({
 
@@ -20,8 +21,13 @@ var Knead = React.createClass({
         return <Root navigator={navigator}/>
       case 'Sign up':
         return <SignUp navigator={navigator}/>
+      case 'Not invited':
+        return <NotInvitedToHH navigator={navigator}/>
+      case 'Invited':
+        return <InvitedToHH navigator={navigator}/>
+      case 'Create new household':
+        return <CreateNewHH navigator={navigator}/>
     }
-
   },
 
   render: function() {
@@ -31,8 +37,6 @@ var Knead = React.createClass({
         initialRoute={{
           index: 0,
           id: 'Sign up / Login'
-          // component: TabView,
-          
         }}
         renderScene={this.renderScene}
       />

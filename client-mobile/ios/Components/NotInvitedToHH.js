@@ -1,5 +1,3 @@
-'use strict';
-
 var React = require('react-native');
 
 var {
@@ -7,34 +5,26 @@ var {
   TouchableHighlight,
   View,
   Text,
-  TextInput,
 } = React;
 
-var SignUp = React.createClass({
-  joinOrCreateHousehold: function() {
-    //if you are not in a household
+var NotInvitedToHH = React.createClass({
+  createNewHH: function() {
     this.props.navigator.push({
-      index: 3,
-      id: 'Not invited'
+      index: 5,
+      id: 'Create new household'
     })
-
-    //NOTE: need to receive data from the server re: if user was invited to HH or not
-    //if you are in a household
-    // this.props.navigator.push({
-    //   index: 4,
-    //   id: 'Invited'
-    // })
   },
   render: function() {
     return (
       <View style={styles.container}>
-        <TextInput style={styles.input} placeholder='username' keyboardType='default'/>
-        <TextInput style={styles.input} placeholder='password' secureTextEntry='true'/>
-        <TouchableHighlight 
+        <Text>You're not in a household yet, please have your roommate invite you</Text>
+        <Text> ----- OR ----- </Text>
+        <TouchableHighlight
           style={styles.button}
-          onPress={() => this.joinOrCreateHousehold()}
+          onPress={() => this.createNewHH()}
         >
-          <Text style={styles.btnText}>Sign Up</Text>
+          <Text style={styles.btnText}>Create New Household</Text>
+
         </TouchableHighlight>
       </View>
     );
@@ -66,4 +56,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = SignUp;
+module.exports = NotInvitedToHH;
