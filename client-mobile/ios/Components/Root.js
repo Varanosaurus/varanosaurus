@@ -16,6 +16,12 @@ var Root = React.createClass({
       id: 'Sign up'
     })
   },
+  logIn: function() {
+    this.props.navigator.push({
+      index: 2,
+      id: 'Log in'
+    })
+  },
   render: function() {
     return (
       <View style={styles.container}>
@@ -26,9 +32,9 @@ var Root = React.createClass({
           <Text style={styles.btnText}>Sign Up</Text>
 
         </TouchableHighlight>
-        <TouchableHighlight 
+        <TouchableHighlight
           style={styles.button}
-          onPress={() => this.login()}
+          onPress={() => this.logIn()}
         >
           <Text style={styles.btnText}>Login</Text>
         </TouchableHighlight>
@@ -39,21 +45,23 @@ var Root = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    marginTop: 64,
     flex: 1,
-    backgroundColor: 'white'
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff'
   },
   button: {
     height: 36,
     flex: 1,
-    margin: 2,
-    backgroundColor: 'black',
     flexDirection: 'row',
-    justifyContent: 'center'
+    backgroundColor: '#2fb4da',
+    justifyContent: 'center',
+    color: '#FFFFFF'
   },
   btnText: {
     fontSize: 18,
-    color: 'white'
+    color: '#fff',
+    marginTop: 6
   }
 });
 

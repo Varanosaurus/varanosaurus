@@ -1,15 +1,18 @@
 'use strict';
 
 var React = require('react-native');
-// var ShoppingListItem = require('./ShoppingListItem');
-// var ShoppingItemDetail = require('./ShoppingItemDetail');
 
 var {
   StyleSheet,
   ListView,
   View,
   Text,
+  SegmentedControlIOS,
+  Navigator
 } = React;
+
+var ItemCell = require('./ItemCell');
+var ItemDetails = require('./ItemDetails');
 
 /* This mock data is here to simulate our API */
 var mockedData = [
@@ -115,19 +118,8 @@ var mockedData = [
   }
 ];
 
-/* ItemCell */
-// var ItemCell = React.createClass({
-//   render: function() {
-//     return (
-//       <View style={styles.itemCell}>
-//         <Text style={styles.itemName}>{this.props.itemName}</Text>
-//         <Text style={styles.itemPrice}>{this.props.itemPrice}</Text>
-//       </View>
-//     );
-//   }
-// });
-
 var ItemList = React.createClass({
+
   getInitialState: function() {
     return {
       dataSource: new ListView.DataSource({
@@ -135,42 +127,97 @@ var ItemList = React.createClass({
       }).cloneWithRows(mockedData)
     };
   },
+
   componentDidMount: function() {
     this.fetchData();
   },
+
   fetchData: function() {
     // Return mocked data for now
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(mockedData)
     });
   },
-  render: function() {
+
+  selectItem: function(item: Object) {
+    console.log('reaching here?');
+    ItemList.props.navigator.push({ // this needs to be changed for Navigator
+      id: ItemDetails
+      // passProps: {item},
+    });
+  },
+
+  renderRow: function(item) {
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderItem}
-        style={styles.listView}
+      <ItemCell
+        onSelect={() => this.selectItem(item)}
+        item={item}
       />
     );
   },
-  renderItem: function(item) {
+
+  render: function() {
     return (
-      <View style={styles.itemCell}>
-        <Text style={styles.itemName}>{item.itemName}</Text>
-        <Text style={styles.itemPrice}>${item.itemPrice}</Text>
-      </View>
-    );
-  }
+        <View style={styles.segmentControl}>
+          <SegmentedControlIOS
+            values={['Pending', 'Bought']}
+            selectedIndex={0}
+            tintColor={'#2fb4da'}
+            onValueChange={(val) => {
+              this.setState({
+                selectedTab: val
+              })
+            }} />
+            {this.renderListView()}
+        </View>
+      )
+  },
+
+  renderListView: function() {
+    if (this.state.selectedTab === 'Pending') {
+      return (
+        <View style={styles.container}>
+          {this.renderPendingListView()}
+        </View>
+      )
+    } else if (this.state.selectedTab === 'Bought') {
+      return (
+        this.renderBoughtListView()
+      )
+    }
+  },
+
+  renderPendingListView: function() {
+    return (
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow}
+        style={styles.listView}
+        automaticallyAdjustContentInsets={false}
+        contentInset={{bottom: 50}}
+       />
+    )
+  },
+
+  renderBoughtListView: function() {
+    return (
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow}
+        style={styles.listView}
+        automaticallyAdjustContentInsets={false}
+        contentInset={{bottom: 50}}
+       />
+    )
+  },
 
 });
 
 var styles = StyleSheet.create({
-  appContainer: {
+  container: {
     flex: 1,
-    paddingTop: 20,
   },
   listView: {
-    paddingTop: 20,
     backgroundColor: '#F5FCFF'
   },
   itemCell: {
@@ -193,6 +240,10 @@ var styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 6,
     textAlign: 'center',
+  },
+  segmentControl: {
+    flex: 1,
+    marginTop: 64
   }
 });
 
