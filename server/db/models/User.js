@@ -2,10 +2,10 @@
 
 var Sequelize = require('sequelize');
 var Bluebird = require('bluebird');
-var bcrypt = Bluebird.promisifyAll(require('bcrypt'));
+var bcrypt = Bluebird.promisifyAll(require('bcrypt-nodejs'));
 
 var hashPassword = function(user) {
-	return bcrypt.hashAsync(user.password, 8)
+	return bcrypt.hashAsync(user.password, 8, null)
 		.then(function(hash) {
 			user.password = hash;
 		});
