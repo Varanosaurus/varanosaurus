@@ -61,7 +61,7 @@ var SignUp = React.createClass({
     return (
       <View style={styles.container}>
         <TextInput keyboardType='default' style={styles.input} placeholder='username' onChangeText={(username) => this.setState({username})} value={this.state.username}/>
-        <TextInput keyboardType='default' style={styles.input} placeholder='password' secureTextEntry='true' onChangeText={(password) => this.setState({password})} value={this.state.password}/>
+        <TextInput keyboardType='default' style={styles.input} placeholder='password' secureTextEntry={true} onChangeText={(password) => this.setState({password})} value={this.state.password}/>
         <Text style={styles.errorHandling}>{this.state.error}</Text>
         <TouchableHighlight style={styles.button} onPress={this.joinOrCreateHousehold}>
           <Text style={styles.btnText}>Sign Up</Text>
