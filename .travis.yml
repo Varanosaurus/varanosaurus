@@ -1,4 +1,4 @@
 language: javascript
 services: postgres
 before_script:
-  - psql -c "CREATE DATABASE knead; USE knead; CREATE SCHEMA knead"
+  - psql -c "CREATE DATABASE knead; USE knead; CREATE SCHEMA knead;" -U $USER
