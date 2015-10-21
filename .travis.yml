@@ -1,7 +1,9 @@
 language: node_js
 services: postgresql
 before_script:
-  - psql -c "CREATE DATABASE knead;" -U postgres
+  - psql -c "CREATE DATABASE knead;"
+  - psql -c "CREATE SCHEMA knead;"
+  - psql -d knead -U postgres
 
 node_js:
   - "4.0"
