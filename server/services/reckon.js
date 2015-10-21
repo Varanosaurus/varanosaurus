@@ -2,6 +2,13 @@ var db = require('../db/interface');
 
 var reckon = function(householdId) {
 
+  if (typeof householdId !== 'number') {
+    householdId = parseInt(householdId, 10);
+    if (isNaN(householdId)) {
+      return Promise.reject(new TypeError('householdId cannot be parsed to int'));
+    }
+  }
+
   return db.Household.findById(householdId, {
     // Eagerly load some of the associated data
     // that we'll use to calculate the details of

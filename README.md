@@ -1,5 +1,7 @@
 # Knead
 
+[![Build Status](https://travis-ci.org/varanosaurus/varanosaurus.svg)](https://travis-ci.org/varanosaurus/varanosaurus)
+
 Homegood and grocery coordination and share-splitting.
 
 ## Team

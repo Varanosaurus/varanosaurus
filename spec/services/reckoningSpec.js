@@ -258,4 +258,43 @@ describe('Reckoning service', function() {
 
   }); // Closes 'should resolve to null when there are no users associated with the household'
 
+  it('should gracefully handle an erroneous household id', function(done) {
+
+    reckon(123)
+      .then(function(reckoning) {
+        expect(reckoning).toBeNull();
+      })
+
+      .catch(done.fail.bind(done))
+      .then(done);
+
+  }); // Closes 'should gracefully handle an erroneous household id'
+
+  it('should accept strings that can be coerced to integers', function(done) {
+
+    reckon(this.household.id.toString())
+
+      .then(function(reckoning) {
+        expect(reckoning).toBeTruthy();
+      })
+
+      .catch(done.fail.bind())
+      .then(done);
+
+  }); // 'should accept strings that can be coerced to integers'
+
+  it('should reject a string that can\'t be coerced to number', function(done) {
+
+    reckon('wrong thing!!!')
+
+      .then(done.fail.bind(done))
+
+      .catch(function(error) {
+        expect(error).toEqual(jasmine.any(TypeError));
+        expect(error.message).toEqual('householdId cannot be parsed to int');
+      })
+      .then(done);
+
+  }); // Closes 'should reject a string that can't be coerced to number'
+
 }); // Closes 'Reckoning service'
