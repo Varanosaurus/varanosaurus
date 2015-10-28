@@ -9,6 +9,11 @@ var Actions = require('../../../Actions/Actions');
 
 var Reckoning = React.createClass({
 
+  componentWillMount() {
+    this.props.dispatch(Actions.fetchReckoningLists());
+    console.log(this.props.reckonings);
+  },
+
   render() {
     switch (this.props.reckoningsViewMode) {
       case 'list':

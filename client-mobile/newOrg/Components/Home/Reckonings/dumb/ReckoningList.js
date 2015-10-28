@@ -12,7 +12,7 @@ var ReckoningCell = require('./ReckoningCell');
 
 var ReckoningList = React.createClass({
 
-  componentDidMount() {
+  componentWillMount() {
     this.dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     });

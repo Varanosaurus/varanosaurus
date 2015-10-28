@@ -158,7 +158,28 @@ exports.setItemsFilter = function(filter) {
 };
 
 // GET_RECKONINGS: grab list of household's associated reckonings for display as list
+exports.fetchReckoningLists = function() {
+  return function(dispatch) {
+    Network.getReckoning()
+      .then(function(response) {
+        return response.json()
+          .then(function(body) {
+            if (response.ok) {
+              return dispatch(fetchReckoningListsSuccess(body));
+            }
+          });
+      });
+  };
+};
 
+function fetchReckoningListsSuccess(data) {
+  return {
+    type: 'FETCH_RECKONING_LISTS_SUCCESS',
+    payload: {
+      reckonings: data,
+    },
+  };
+}
 // GET_HOME_ITEMS: grab list of household's current unreckoned items (split into bought and pending)
 // and set into state.data.items.bought and state.data.items.pending
 
