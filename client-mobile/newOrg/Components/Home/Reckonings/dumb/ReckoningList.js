@@ -12,7 +12,7 @@ var ReckoningCell = require('./ReckoningCell');
 
 var ReckoningList = React.createClass({
 
-  componentDidMount() {
+  componentWillMount() {
     this.dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     });
@@ -28,7 +28,9 @@ var ReckoningList = React.createClass({
   },
 
   render() {
+    console.log('THIS IS "this.props" FROM "ReckoningList.js" :', this.props.reckonings);
     var dataSource = this.dataSource.cloneWithRows(this.props.reckonings);
+    console.log('dataSource is : ', dataSource);
     return (
         <View style={styles.reckoningList}>
           <ListView
