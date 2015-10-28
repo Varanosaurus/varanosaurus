@@ -10,7 +10,7 @@ var {
   TouchableHighlight,
 } = React;
 
-var RoommateInvitations = React.createClass({
+var InviteRoommates = React.createClass({
   getInitialState: function() {
     return ({
       inputField: [true, true, true],
@@ -61,7 +61,7 @@ var RoommateInvitations = React.createClass({
 
 });
 
-module.exports = RoommateInvitations;
+module.exports = InviteRoommates;
 
 var styles = StyleSheet.create({
   container: {

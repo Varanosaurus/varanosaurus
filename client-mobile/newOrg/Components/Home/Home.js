@@ -11,7 +11,6 @@ var HomeTab = require('./dumb/HomeTab');
 var Home = React.createClass({
 
   render() {
-
     return this.props.household
       ? this.renderHomeTab()
       : this.renderHomeless();

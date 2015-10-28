@@ -33,6 +33,7 @@ var state = {
     reckoningsDetailsItemMode: '',
     reckoningsSelectedItem: null, //itemId; TODO: rename to reflect that it's an ID?
     settingsViewMode: 'options', //'invite'
+    homelessViewMode: 'inviteRoommates',
   },
 
   token: null,

@@ -3,44 +3,36 @@
 var React = require('react-native');
 var {connect} = require('react-redux');
 
-var CreateHousehold = require('./dumb/CreateHousehold');
-var Invitations = require('./dumb/Invitations');
-var RoommateInvitations = require('./dumb/RoommateInvitations');
+var JoinOrCreateHousehold = require('./dumb/JoinOrCreateHousehold');
+// var InviteRoommates = require('./dumb/InviteRoommates');
 
 var Homeless = React.createClass({
-  render() {
-    return this.props.invitations.length > 0 && this.props.house === null// user has pending invitations && user does not belong to a household (note: second condition is checked in Home.js too)
-      ? this.renderInvitations()
-      : this.renderCreateHousehold();
-  },
 
-  renderInvitations() {
+  //if you created a household
+  render() {
     return (
-      <Invitations
+      <JoinOrCreateHousehold
         invitations={this.props.invitations}
-        submit={this.renderCreateHousehold}
         join={this.handleJoinHousehold}
         decline={this.handleDeclineHousehold}
-      />
-    );
-  },
-
-  renderCreateHousehold() {
-    return (
-      <CreateHousehold
         submit={this.handleHouseholdCreation}
-        gotoRoommateInvitations={this.gotoRoommateInvitations}
+        gotoInviteRoommates={this.gotoInviteRoommates}
       />
     );
   },
 
-  gotoRoommateInvitations() {
-    return (<RoommateInvitations submit={this.handleRoommateInvites} />);
-  },
+  // renderCreateHousehold() {
+  //   return (
+  //     <CreateHousehold
+  //       submit={this.handleHouseholdCreation}
+  //       gotoInviteRoommates={this.gotoInviteRoommates}
+  //     />
+  //   );
+  // },
 
-  handleHouseholdCreation(/*TODO: payload*/) {
-    // dispatch action to store causing creation of new household
-    this.props.dispatch(/*TODO: HOUSEHOLD CREATION*/);
+  gotoInviteRoommates() {
+    //dispatch action to store, changing homelessViewMode to inviteRoommates
+    this.props.dispatch();
   },
 
   handleJoinHousehold(/*TODO: payload*/) {
@@ -53,7 +45,12 @@ var Homeless = React.createClass({
     this.props.dispatch(/*TODO: REMOVE HOUSEHOLD INVITATION*/);
   },
 
-  handleRoommateInvites(/*TODO: payload*/) {
+  handleHouseholdCreation(/*TODO: payload*/) {
+    // dispatch action to store causing creation of new household
+    this.props.dispatch(/*TODO: HOUSEHOLD CREATION*/);
+  },
+
+  handleInviteRoommates(/*TODO: payload*/) {
     //dispatch action to store --> update store with creation of new invitation model in data.invitations
     this.props.dispatch(/*TODO: SEND INVITES*/);
   },
