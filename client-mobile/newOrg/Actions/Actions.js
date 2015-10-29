@@ -173,7 +173,6 @@ function addHouseholdSuccess(data) {
 }
 
 // ADD_HOUSEHOLD_FAILURE: display error message?
-
 function addHouseholdFailure(message) {
   return {
     type: 'ADD_HOUSEHOLD_FAILURE',
@@ -182,27 +181,47 @@ function addHouseholdFailure(message) {
   };
 }
 
-// (NEED TO FINISH) ACCEPT INVITATION: with payload of 'invitation'
-// exports.joinHousehold = function(status, invitationId) {
+// JOIN_HOUSEHOLD
+exports.updateInvitation = function(status, invitationId) {
+  return function(dispatch) {
+    return Network.respondToInvitation(status, invitationId)
+      .then(function(response) {
+        return response.json()
+          .then(function(body) {
+            if (response.ok) {
+              return dispatch(updateInvitationSuccess(body));
+            } else {
+              return dispatch(updateInvitationFailure(body));
+            }
+          });
+      })
+      .catch(function(error) {
+        console.log(error);
+        return dispatch(updateInvitationFailure(error.message));
+      });
+  };
+};
 
-//   return function(dispatch) {
-//     return Network.respondToInvitation(status, invitationId)
-//       .then(function(response) {
-//         return response.json()
-//           .then(function(body) {
-//             // if (response.ok) {
-//             //   return dispatch(signupSuccess(body));
-//             // } else {
-//             //   return dispatch(signupFailure(body));
-//             // }
-//           });
-//       })
-//       .catch(function(error) {
-//         console.log(error);
-//         // return dispatch(signupFailure(error.message));
-//       });
-//   };
-// };
+// JOIN_HOUSEHOLD_SUCCESS
+function updateInvitationSuccess(data) {
+  return {
+    type: 'UPDATE_INVITATION_SUCCESS',
+    payload: {
+      invitation: data.invitation,
+      household: data.household,
+      token: data.token,
+    },
+  };
+}
+
+//JOIN_HOUSEHOLD_FAILURE
+function updateInvitationFailure(message) {
+  return {
+    type: 'UPDATE_INVITATION_FAILURE',
+    payload: {message},
+    error: true,
+  };
+}
 
 // SET_HOMETAB, with payload of 'items', 'reckonings', or 'settings' ?
 exports.setHomeTab = function(mode) {

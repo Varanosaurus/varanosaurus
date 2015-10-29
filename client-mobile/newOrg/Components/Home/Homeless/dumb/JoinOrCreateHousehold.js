@@ -10,27 +10,11 @@ var {
   TouchableHighlight,
 } = React;
 
-// {
-//   seen: true,
-//   seenAt: 2015-06-10,
-//   id: 1,
-//   createdAt: 2015-06-10,
-//   updatedAt: 2015-06-10,
-//   fromUserId: 25,
-//   toUserId: 2,
-//   householdId: 2,
-//   status: 'pending'
-// }
-
 var JoinOrCreateHousehold = React.createClass({
   getInitialState() {
     return ({
-      invitations: [{householdName: 'householdName1'}, {householdName: 'householdName2'}],
-      // this.props.invitations.received,
-      // [{householdName: "householdName1"},{householdName: "householdName2"}]
+      invitations: this.props.invitations.received,
       householdName: '',
-      acceptedInvitation: '',
-      declinedInvitation: '',
     });
   },
 
@@ -40,7 +24,7 @@ var JoinOrCreateHousehold = React.createClass({
     if (invitations.length === 0) {
       return (
         <View>
-          <Text>If your roommate has not invited you to the household yet, remind them. (FIX MESSAGING)</Text>
+          <Text>If you think you have been invited to a household, please check with your roommate and remind them to invite you.</Text>
           <Text> ----- OR ----- </Text>
           <Text> Create a household </Text>
           <TextInput
@@ -68,10 +52,10 @@ var JoinOrCreateHousehold = React.createClass({
               return (
                 <View>
                   <Text key={invitation.householdName}>You have been invited to the {invitation.householdName} household!</Text>
-                  <TouchableHighlight onPress={() => {self.props.join(invitation);}}>
+                  <TouchableHighlight onPress={() => {self.props.respondToInvitation('accepted', invitation.id);}}>
                     <Text>Join</Text>
                   </TouchableHighlight>
-                  <TouchableHighlight>
+                  <TouchableHighlight onPress={() => {self.props.respondToInvitation('rejected', invitation.id);}}>
                     <Text>Decline</Text>
                   </TouchableHighlight>
                 </View>
@@ -98,10 +82,6 @@ var JoinOrCreateHousehold = React.createClass({
         </View>
       );
     }
-  },
-
-  joinHousehold(invitation) {
-    this.props.join(invitation);
   },
 
   handleSubmit() {
