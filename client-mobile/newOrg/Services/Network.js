@@ -9,7 +9,7 @@ var url = deployUrl || testUrl;
 var userUrl = 'api/users/';
 var itemUrl = 'api/items/';
 var householdUrl = 'api/households/';
-// var reckoningUrl = 'api/reckonings/';
+var reckoningUrl = 'api/reckonings/';
 var invitationUrl = 'api/invitations/';
 
 var makeParams = function(method, body) {
@@ -171,6 +171,15 @@ var respondToInvitation = function(status, invitationId) {
 
 //deleteInvitation?
 
+var getReckoning = function() {
+  var params = makeParams('GET');
+  return fetch(url + reckoningUrl, params)
+    .catch(function(error) {
+      console.error(error);
+    });
+};
+
+
 module.exports = {
   signup,
   login,
@@ -190,4 +199,6 @@ module.exports = {
   getItem,
   updateItem,
   getItems,
+
+  getReckoning,
 };

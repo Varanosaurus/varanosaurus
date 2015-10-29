@@ -17,7 +17,7 @@ var ReckoningCell = React.createClass({
         <TouchableElement
           onPress={this.props.onSelect} >
           <View style={styles.ReckoningCell}>
-            <Text style={styles.reckoningName}>{this.props.reckoning.name}</Text>
+            <Text style={styles.reckoningName}>{this.props.reckoning}</Text>
           </View>
         </TouchableElement>
       </View>

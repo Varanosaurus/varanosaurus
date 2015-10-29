@@ -31,8 +31,7 @@ var HomeTab = React.createClass({
           title='Reckonings'
           onPress={this.props.gotoReckoningsTab}
         >
-        <Text>Reckonings View!!!</Text>
-          {/*this.renderReckoningsTabView()*/}
+          {this.renderReckoningsTabView()}
         </TabBarIOS.Item>
         <TabBarIOS.Item
           selected={this.props.selectedTab === 'settings'}

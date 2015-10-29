@@ -6,13 +6,15 @@ var {
   StyleSheet,
   ListView,
   View,
+  TouchableHighlight,
+  Text,
 } = React;
 
-var ReckoningCell = require('./ReckoningCell');
+// var ReckoningCell = require('./ReckoningCell');
 
 var ReckoningList = React.createClass({
 
-  componentDidMount() {
+  componentWillMount() {
     this.dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     });
@@ -20,10 +22,18 @@ var ReckoningList = React.createClass({
 
   renderRow(reckoning) {
     return (
-      <ReckoningCell
-        onSelect={this.props.handleSelect}
-        reckoning={reckoning}
-      />
+      <View>
+        <TouchableHighlight
+          onPress={() => this.props.goToReckoningDetailsView(reckoning)} >
+          <View>
+            <Text>{reckoning.date.toString()}</Text>
+          </View>
+        </TouchableHighlight>
+      </View>
+      // <ReckoningCell
+      //   onSelect={this.props.handleSelect}
+      //   reckoning={reckoning}
+      ///>
     );
   },
 

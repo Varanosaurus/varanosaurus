@@ -26,7 +26,7 @@ var ReckoningDetails = React.createClass({
     return (
       <ReckoningItemsDetails
         /* TODO: pass prop? */
-        items={this.props.reckoning.items}
+        items={this.props.reckoning}
         onSelect={this.goToItemsDetailsView}
       />
     );
