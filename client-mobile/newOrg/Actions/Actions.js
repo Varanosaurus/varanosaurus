@@ -186,28 +186,7 @@ function addHouseholdFailure(message) {
   };
 }
 
-// exports.fetchInvitationInbox = function(username, password) {
-
-//   return function(dispatch) {
-//     return Network.signup(username, password)
-//       .then(function(response) {
-//         return response.json()
-//           .then(function(body) {
-//             if (response.ok) {
-//               return dispatch(signupSuccess(body));
-//             } else {
-//               return dispatch(signupFailure(body));
-//             }
-//           });
-//       })
-//       .catch(function(error) {
-//         console.log(error);
-//         return dispatch(signupFailure(error.message));
-//       });
-//   };
-// };
-
-// JOIN_HOUSEHOLD
+//UPDATE INVITATION
 exports.updateInvitation = function(status, invitationId) {
   console.log('upateInvitation in Actions being called with: ', status, invitationId);
   return function(dispatch) {
