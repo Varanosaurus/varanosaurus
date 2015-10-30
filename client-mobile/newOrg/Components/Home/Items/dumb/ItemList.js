@@ -63,10 +63,10 @@ var ItemList = React.createClass({
 
     return (
         <TouchableHighlight
-          style={Styles.list.row}
+          style={styles.list.row}
           onPress={() => this.props.gotoItemDetailsView(item)} >
           <View>
-            <Text style={Styles.list.label}>{item.description}</Text>
+            <Text style={styles.list.label}>{item.description}</Text>
           </View>
         </TouchableHighlight>
     );

@@ -16,7 +16,6 @@ var Login = React.createClass({
     return ({
        username: '',
        password: '',
-       error: '',
     });
   },
 
@@ -38,6 +37,7 @@ var Login = React.createClass({
             onChangeText={(password) => this.setState({password})}
             value={this.state.password}
           />
+          <Text style={styles.errorHandling}>{this.props.errorHandling}</Text>
           <TouchableHighlight style={styles.button} onPress={this.handleSubmit}>
             <Text style={styles.btnText}>Log in</Text>
           </TouchableHighlight>

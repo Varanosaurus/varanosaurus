@@ -71,10 +71,16 @@ var styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
   },
+  inputLine: {
+    flex: 1,
+    flexDirection: 'row',
+  },
   input: {
+    flex: 2,
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
+
   },
   mainSection: {
     flex: 1,
