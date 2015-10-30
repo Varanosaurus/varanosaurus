@@ -21,27 +21,31 @@ var InviteRoommates = React.createClass({
     var self = this;
     return (
       <View style={styles.container}>
-      <Text>THIS IS WORKING</Text>
         {
           inputFields.map(function() {
-          return (<TextInput
-                    style={styles.input}
-                    keyboardType='default'
-                    placeholder="roommate name"
-                    onChangeText={(input) => {
-                      self.setState({input: input});
-                    }}
-                  />);
+            return (
+              <View style={styles.inputLine}>
+              <TextInput
+                style={styles.input}
+                keyboardType='default'
+                placeholder="roommate username"
+                onChangeText={(input) => {
+                  self.setState({input: input});
+                }}
+              />
+              <TouchableHighlight
+                style={styles.button}
+                onPress={self.submitRoommates}
+              >
+                <Text style={styles.btnText}>Invite</Text>
+              </TouchableHighlight>
+              </View>
+
+            );
           })
         }
         <Text style={styles.hyperLink} onPress={self.addRoommate}>Invite More</Text>
         <Text style={styles.errorHandling}>{self.state.error}</Text>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={self.submitRoommates}
-        >
-          <Text style={styles.btnText}>Invite Roommates</Text>
-        </TouchableHighlight>
       </View>
     );
   },
@@ -72,22 +76,24 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'white',
   },
+  inputLine: {
+    flex: 1,
+    flexDirection: 'row',
+  },
   input: {
+    flex: 2,
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
+
   },
   hyperLink: {
     color: 'blue',
   },
   button: {
     flex: 1,
-    paddingTop: 10,
-    paddingBottom: 10,
     backgroundColor: 'black',
-    flexDirection: 'row',
     justifyContent: 'center',
-    position: 'absolute',
   },
   btnText: {
     fontSize: 18,
