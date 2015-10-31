@@ -50,7 +50,6 @@ var getBoughtItemDetailsView = exports.getBoughtItemDetailsView = function(item)
     props,
   };
 
-
 };
 
 exports.getPendingItemDetailsView = function(item, props) {
