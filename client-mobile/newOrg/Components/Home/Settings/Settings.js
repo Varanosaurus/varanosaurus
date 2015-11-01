@@ -11,6 +11,11 @@ var ConfirmLeave = require('./dumb/confirmLeave');
 var ReckonAndLeave = require('./dumb/reckonAndLeave');
 
 var Settings = React.createClass({
+
+  componentWillMount() {
+    this.props.dispatch(Actions.fetchPendingInvites());
+  },
+
   render() {
     if (this.props.settingsViewMode === 'invite') {
       return this.gotoInviteRoommates();
@@ -89,7 +94,6 @@ function select(state) {
       }
     }
   }
-
   return {
     settingsViewMode: state.uiMode.settingsViewMode,
     selectedReckoning: state.data.selectedReckoning,
