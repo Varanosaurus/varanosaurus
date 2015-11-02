@@ -48,6 +48,7 @@ var Settings = React.createClass({
         username={this.props.username}
         contribution={this.props.contribution}
         debt={this.props.debt}
+        leaveHousehold={this.leaveHousehold}
       />
     );
   },
@@ -73,6 +74,10 @@ var Settings = React.createClass({
 
   gotoSettingsOptions() {
     this.props.dispatch(Actions.setSettingsViewMode('options'));
+  },
+
+  leaveHousehold() {
+    this.props.dispatch(Actions.leaveHousehold());
   },
 
 });

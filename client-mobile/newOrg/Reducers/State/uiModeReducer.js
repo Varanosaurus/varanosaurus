@@ -17,6 +17,8 @@ function selectedHomeTab(state = 'items', action) {
     return action.payload.mode;
   case 'ADD_HOUSEHOLD_SUCCESS':
     return 'settings';
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return 'items';
   case 'LOGOUT':
     return 'items';
   default:
@@ -28,6 +30,8 @@ function itemsViewMode(state = 'list', action) {
   switch (action.type) {
   case 'SET_ITEMS_VIEW_MODE':
     return action.payload.mode;
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return 'list';
   case 'LOGOUT':
     return 'list';
   default:
@@ -39,6 +43,8 @@ function itemsFilter(state = 'pending', action) {
   switch (action.type) {
   case 'SET_ITEMS_FILTER':
     return action.payload.filter;
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return 'pending';
   case 'LOGOUT':
     return 'pending';
   default:
@@ -50,6 +56,8 @@ function selectedItemId(state = null, action) {
   switch (action.type) {
   case 'SELECT_ITEM':
     return action.payload.itemId;
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return null;
   case 'LOGOUT':
     return null;
   default:
@@ -65,6 +73,8 @@ function addItemRequestStatus(state = null, action) {
     return 'succeeded';
   case 'ADD_ITEM_FAILURE':
     return 'failed';
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return null;
   case 'LOGOUT':
     return null;
   default:
@@ -76,6 +86,8 @@ function addItemRequestError(state = null, action) {
   switch (action.type) {
   case 'ADD_ITEM_FAILURE':
     return action.payload.error;
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return null;
   case 'LOGOUT':
     return null;
   default:
@@ -87,6 +99,8 @@ function reckoningsViewMode(state = 'list', action) {
   switch (action.type) {
   case 'SET_RECKONINGS_VIEW_MODE':
     return action.payload.mode;
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return 'list';
   case 'LOGOUT':
     return 'list';
   default:
@@ -100,6 +114,8 @@ function selectedReckoningId(state = null, action) {
     return action.payload.reckoningId;
   case 'INITIATE_RECKONING_SUCCESS':
     return action.payload.household.reckoning.id;
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return null;
   case 'LOGOUT':
     return null;
   default:
@@ -111,6 +127,8 @@ function reckoningDetailsMode(state = 'items', action) {
   switch (action.type) {
   case 'SET_RECKONINGS_DETAILS_MODE':
     return action.payload.mode;
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return 'items';
   case 'LOGOUT':
     return 'items';
   default:
@@ -122,6 +140,8 @@ function reckoningDetailsItemsMode(state = 'list', action) {
   switch (action.type) {
   case 'SET_RECKONINGS_ITEMS_MODE':
     return action.payload.mode;
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return 'list';
   case 'LOGOUT':
     return 'list';
   default:
@@ -133,7 +153,9 @@ function reckoningSelectedItemId(state = null, action) {
   switch (action.type) {
   case 'SELECT_RECKONING_ITEM':
     return action.payload.itemId;
-    case 'LOGOUT':
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return null;
+  case 'LOGOUT':
     return null;
   default:
     return state;
@@ -146,6 +168,8 @@ function settingsViewMode(state = 'options', action) {
     return action.payload.mode;
   case 'ADD_HOUSEHOLD_SUCCESS':
     return 'invite';
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return 'options';
   case 'LOGOUT':
     return 'options';
   default:

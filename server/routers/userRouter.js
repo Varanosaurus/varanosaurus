@@ -34,6 +34,14 @@ router.put('/:userId', function(request, response) {
   db.User.update(updates, {where: {id}, returning: true})
 
     .then(function(updateArray) {
+      var user = {
+        createdAt: updateArray[1][0].createdAt,
+        householdId: updateArray[1][0].householdId,
+        id: updateArray[1][0].id,
+        updatedAt: updateArray[1][0].updatedAt,
+        username: updateArray[1][0].username,
+      };
+
       var token;
 
       if (updateArray) {
@@ -41,15 +49,11 @@ router.put('/:userId', function(request, response) {
           token = tokens.issue(id, updates.householdId);
           db.Household.findOne({where: {id: updates.householdId}})
             .then(function(household) {
-              response.status(201).json({
-                user: updateArray[1][0],
-                token,
-                household,
-              });
+              response.status(201).json({user, token, household});
             });
         } else {
           token = tokens.issue(id);
-          response.status(201).json({user: updateArray[1][0], token});
+          response.status(201).json({user, token});
         }
 
       } else {

@@ -8,6 +8,8 @@ function token(state = '', action) {
     return '';
   case 'UPDATE_INVITATION_SUCCESS':
     return '' + action.payload.token;
+  case 'LEAVE_HOUSEHOLD_SUCCESS':
+    return action.payload.token;
   default:
     return state;
   }
