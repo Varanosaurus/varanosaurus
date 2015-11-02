@@ -112,8 +112,8 @@ exports.fetchPendingInvites = function() {
   return function(dispatch) {
     return Network.getInvitationOutbox()
       .then(function(response) {
-        // console.log("GET INVITATION OUTBOX RESPONSE")
-        // console.log(response);
+        console.log('GET INVITATION OUTBOX RESPONSE');
+        console.log(response);
         return response.json()
           .then(function(body) {
             if (response.ok) {
@@ -125,8 +125,8 @@ exports.fetchPendingInvites = function() {
 };
 
 function fetchPendingInvitesSuccess(data) {
-  // console.log("FETCH PENDING INVITES")
-  // console.log(data);
+  console.log('FETCH PENDING INVITES');
+  console.log(data);
   return {
     type: 'FETCH_PENDING_INVITES_SUCCESS',
     payload: {

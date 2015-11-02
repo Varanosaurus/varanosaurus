@@ -59,7 +59,7 @@ router.get('/inbox', function(request, response) {
 router.get('/outbox', function(request, response) {
   var userId = request.decoded.userId;
 
-  db.Invitation.findAll({Where: {fromUserId: userId}})
+  db.Invitation.findAll({where: {fromUserId: userId}})
 
     .then(function(invitations) {
       response.json({invitations});
