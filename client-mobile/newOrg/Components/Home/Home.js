@@ -9,6 +9,7 @@ var NavRedux = require('../NavRedux');
 var Home = React.createClass({
 
   render() {
+    console.log('truthy household?', !!this.props.household);
     return this.props.household
       ? <NavRedux />
       : <Homeless />;
@@ -17,6 +18,8 @@ var Home = React.createClass({
 });
 
 function select(state) {
+  console.log('rendering homeless or home, state.data.household is: ', state.data.household);
+  console.log('truthy?: ', state.data.household ? true : false);
   return {
     household: state.data.household,
     selectedHomeTab: state.uiMode.selectedHomeTab,

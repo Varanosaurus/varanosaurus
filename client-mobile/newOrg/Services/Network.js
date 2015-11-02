@@ -61,11 +61,10 @@ var updateUser = function(updates) {
   return fetch(url + userUrl + Store.getState().data.user.id, params)
     //make sure to tell the other thing to reset the token
     .catch(function(error) {
+      console.log('in updateUser in Network, caught error: ', error);
       console.error(error);
     });
 };
-
-//getUser --> necessary? should be returned with login/signup/updateUser
 
 var deleteUser = function() {
   var params = makeParams('DELETE');
