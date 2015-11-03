@@ -1,3 +1,21 @@
+// var AuthActions = require('./subActions/AuthActions');
+// var HouseholdActions = require('./subActions/HouseholdActions');
+// var InvitationActions = require('./subActions/InvitationActions');
+// var ItemActions = require('./subActions/ItemActions');
+// var ReckoningActions = require('./subActions/ReckoningActions');
+// var UIModeActions = require('./subActions/UIModeActions');
+
+// module.exports = {
+//   ...AuthActions,
+//   ...HouseholdActions,
+//   ...InvitationActions,
+//   ...ItemActions,
+//   ...ReckoningActions,
+//   ...UIModeActions,
+// };
+
+// LOGIN: submit username/password to server for verification, and handle success or failure
+
 // LOGIN: submit username/password to server for verification, and handle success or failure
 
 var Network = require('./Network');
@@ -414,7 +432,7 @@ function fetchReckoningListsSuccess(data) {
 
 exports.fetchSelectedReckoning = function() {
   return function(dispatch) {
-    return Network.getSelectedReckoning()
+    Network.getSelectedReckoning()
       .then(function(response) {
         return response.json()
           .then(function(body) {
