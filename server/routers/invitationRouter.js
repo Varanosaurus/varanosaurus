@@ -56,6 +56,9 @@ router.get('/inbox', function(request, response) {
 
 });
 
+
+// {include: [{model: User, where: {id: toUserId}}]}
+
 router.get('/outbox', function(request, response) {
   var userId = request.decoded.userId;
 

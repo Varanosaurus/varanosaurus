@@ -182,7 +182,10 @@ exports.addHousehold = function(householdName) {
             } else {
              return dispatch(addHouseholdFailure(body));
             }
-         });
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       })
       .catch(function(error) {
         console.log(error);
