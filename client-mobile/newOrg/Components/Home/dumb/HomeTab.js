@@ -26,7 +26,7 @@ var HomeTab = React.createClass({
           selected={this.props.selectedTab === 'items'}
           title='Items'
           iconName={'shopping-cart'}
-          iconSize={30}
+          iconSize={40}
           onPress={this.gotoItemsTab}
         >
           {this.renderItemsTabView()}
@@ -35,7 +35,7 @@ var HomeTab = React.createClass({
           selected={this.props.selectedTab === 'reckonings'}
           title='Reckonings'
           iconName={'graph-pie'}
-          iconSize={30}
+          iconSize={40}
           onPress={this.gotoReckoningsTab}
         >
           {this.renderReckoningsTabView()}
@@ -44,7 +44,7 @@ var HomeTab = React.createClass({
           selected={this.props.selectedTab === 'settings'}
           title='Settings'
           iconName={'widget'}
-          iconSize={30}
+          iconSize={40}
           onPress={this.gotoSettingsTab}
         >
           {this.renderSettingsTabView()}

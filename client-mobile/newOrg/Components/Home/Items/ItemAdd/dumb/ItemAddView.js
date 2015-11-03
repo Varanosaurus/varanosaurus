@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var Styles = require('../../../../../Styles/Styles');
 
 var Button = require('react-native-button');
 
@@ -27,28 +28,34 @@ var ItemAddView = React.createClass({
 
   render() {
     return (
-      <View style={styles.mainSection}>
-        <Text>Enter a short description:</Text>
+      <View style={Styles.default.container}>
+        <Text style={Styles.default.textboxLabel}>Enter a Product</Text>
         <TextInput
-          style={styles.input}
+          style={Styles.default.textbox}
+          placeholder='Write a name of a product'
           onChangeText={(description) => this.setState({description})}
           value={this.state.description}
         />
-        <Text>Enter any additional details:</Text>
+        <Text style={Styles.default.textboxLabel}>Leave a Memo</Text>
         <TextInput
-          style={styles.input}
+          style={Styles.default.textbox}
+          placeholder='Write additional description'
           onChangeText={(details) => this.setState({details})}
           value={this.state.details}
         />
-        <SwitchIOS onValueChange={(bought) => this.setState({bought})} value={this.state.bought} />
-        <Text>Already bought</Text>
+        <Text style={Styles.default.alreadyBought}>Already bought?</Text>
+        <SwitchIOS
+          style={{margin: 10}}
+          onValueChange={(bought) => this.setState({bought})}
+          value={this.state.bought} />
         {(() => {
             if (this.state.bought) {
               return (
                 <View>
-                <Text>Price:</Text>
+                <Text style={Styles.default.textboxLabel}>Enter a Price</Text>
                 <TextInput
-                  style={styles.input}
+                  style={Styles.default.textbox}
+                  placeholder='Price'
                   keyboardType='decimal-pad'
                   onChangeText={(price) => this.setState({price})}
                   value={this.state.price}
