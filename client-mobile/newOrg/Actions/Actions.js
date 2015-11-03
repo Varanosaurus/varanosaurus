@@ -107,6 +107,34 @@ function signupFailure(message) {
   };
 }
 
+
+exports.fetchPendingInvites = function() {
+  return function(dispatch) {
+    return Network.getInvitationOutbox()
+      .then(function(response) {
+        console.log('GET INVITATION OUTBOX RESPONSE');
+        console.log(response);
+        return response.json()
+          .then(function(body) {
+            if (response.ok) {
+              return dispatch(fetchPendingInvitesSuccess(body));
+            }
+          });
+      });
+  };
+};
+
+function fetchPendingInvitesSuccess(data) {
+  console.log('FETCH PENDING INVITES');
+  console.log(data);
+  return {
+    type: 'FETCH_PENDING_INVITES_SUCCESS',
+    payload: {
+      invites: data,
+    },
+  };
+}
+
 exports.fetchItemLists = function() {
   return function(dispatch) {
     Network.getItems()
@@ -154,7 +182,10 @@ exports.addHousehold = function(householdName) {
             } else {
              return dispatch(addHouseholdFailure(body));
             }
-         });
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       })
       .catch(function(error) {
         console.log(error);

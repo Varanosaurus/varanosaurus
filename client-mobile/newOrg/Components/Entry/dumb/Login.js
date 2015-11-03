@@ -38,6 +38,7 @@ var Login = React.createClass({
             onChangeText={(password) => this.setState({password})}
             value={this.state.password}
           />
+          <Text style={styles.errorHandling}>{this.props.errorHandling}</Text>
           <Button style={Styles.default.btn} onPress={this.handleSubmit}>
             Log in
           </Button>
