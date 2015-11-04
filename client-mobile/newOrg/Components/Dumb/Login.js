@@ -24,26 +24,27 @@ var Login = React.createClass({
     return (
         <View style={Styles.background.navbarArea}>
           <Image
-            source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/31/de/02/31de023159a3cc9b021c7331e4359738.jpg'}}
+            source={{uri: Styles.imageURI}}
             style={Styles.background.belowNavbarArea}>
             <View style={Styles.background.transparentBackground}>
-            <Text style={Styles.default.title}>Knead</Text>
-            <Text style={Styles.default.subheading}>Happy roommates!</Text>
             <View style={Styles.background.authArea}>
+              <Text style={Styles.default.title}>Knead</Text>
               <TextInput
                 keyboardType='default'
                 style={[Styles.input.textboxField, {marginTop: 10}, {color: 'white'}, {borderColor: 'white'}]}
                 placeholder='username'
                 onChangeText={(username) => this.setState({username})}
                 value={this.state.username}
+                placeholderTextColor={'white'}
               />
               <TextInput
                 keyboardType='default'
-                style={[Styles.input.textboxField, {color: 'white'}, {color: 'white'}, {borderColor: 'white'}]}
+                style={[Styles.input.textboxField, {color: 'white'}, {borderColor: 'white'}]}
                 placeholder='password'
                 secureTextEntry={true}
                 onChangeText={(password) => this.setState({password})}
                 value={this.state.password}
+                placeholderTextColor={'white'}
               />
               <Text style={Styles.alert.error}>{this.props.errorHandling}</Text>
               <Button style={Styles.btn.btn} onPress={this.handleSubmit}>
