@@ -11,6 +11,7 @@ var mainFont = 'Heiti TC';
 var titleFont = 'Josefin Sans';
 var kneadFont = 'Lobster';
 
+Styles.addItemButtonIconColor = secondaryColor;
 Styles.iconColor = accentColor;
 Styles.secondaryColor = secondaryColor;
 Styles.listRowIsTouchedColor = '#CFD8DC';
@@ -69,7 +70,6 @@ Styles.background = StyleSheet.create({
 
 Styles.navbar = StyleSheet.create({
   container: {
-    borderBottomWidth: 0,
     borderColor: secondaryColor,
     backgroundColor: primaryColor,
   },
@@ -105,6 +105,15 @@ Styles.default = StyleSheet.create({
     fontSize: 18,
     marginBottom: 8,
     textAlign: 'center',
+  },
+  leftContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  rightContainer: {
+    alignItems: 'flex-end',
+    paddingRight: 20,
   },
   text: {
     fontFamily: mainFont,
@@ -210,6 +219,15 @@ Styles.btn = StyleSheet.create({
 });
 
 Styles.page = StyleSheet.create({
+  pageTitle: {
+    fontFamily: titleFont,
+    backgroundColor: accentColor,
+    paddingTop: 3,
+    paddingBottom: 3,
+    fontSize: 37,
+    color: 'white',
+    textAlign: 'center',
+  },
   pendingTitle: {
     fontFamily: titleFont,
     backgroundColor: '3d4e5b',
@@ -245,6 +263,12 @@ Styles.page = StyleSheet.create({
     margin: 20,
     fontFamily: mainFont,
     fontSize: 70,
+  },
+  boughtItemDetailsContainer: {
+    margin: 20,
+    padding: 20,
+    borderRadius: 5,
+    backgroundColor: primaryColor,
   },
   priceBox: {
     flexDirection: 'column',
@@ -349,7 +373,6 @@ Styles.reckoningTotals = StyleSheet.create({
 });
 
 Styles.reckoningPayments = StyleSheet.create({
-
   container: {
     // flex: 1,
     marginTop: 64,
@@ -391,7 +414,6 @@ Styles.reckoningPayments = StyleSheet.create({
     flex: 1,
     backgroundColor: accentColor,
   },
-
 });
 
 Styles.list = StyleSheet.create({

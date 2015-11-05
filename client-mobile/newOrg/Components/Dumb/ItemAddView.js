@@ -26,47 +26,51 @@ var ItemAddView = React.createClass({
     };
   },
 
+//            <Text style={Styles.input.textboxLabel}>Enter a Product</Text>
+//            <Text style={Styles.input.textboxLabel}>Leave a Memo</Text>
+//                    <Text style={Styles.input.textboxLabel}>Enter a Price</Text>
   render() {
     return (
       <View style={{flex: 1}}>
         <Image
           source={{uri: Styles.patternURI}}
           style={Styles.background.belowNavbarArea}>
-          <View style={Styles.list.container}>
-            <Text style={Styles.input.textboxLabel}>Enter a Product</Text>
+          <View style={[Styles.list.container, {flex: 1, marginTop: 65, backgroundColor: 'rgba(0,0,0,0.7)'}]}>
+            <Text style={[Styles.page.pageTitle, {marginBottom: 10}]}>Add an Item</Text>
             <TextInput
               style={Styles.input.textboxField}
-              placeholder='Write a name of a product'
+              placeholder='Enter a name of the product'
               onChangeText={(description) => this.setState({description})}
               value={this.state.description}
             />
-            <Text style={Styles.input.textboxLabel}>Leave a Memo</Text>
             <TextInput
               style={Styles.input.textboxField}
-              placeholder='Write additional description'
+              placeholder='Leave a memo'
               onChangeText={(details) => this.setState({details})}
               value={this.state.details}
             />
-            <Text style={Styles.alert.infoLeft}>Already bought?</Text>
-            <SwitchIOS
-              style={{margin: 10}}
-              onValueChange={(bought) => this.setState({bought})}
-              value={this.state.bought} />
-            {(() => {
-                if (this.state.bought) {
-                  return (
-                    <View>
-                    <Text style={Styles.input.textboxLabel}>Enter a Price</Text>
-                    <TextInput
-                      style={Styles.input.textboxField}
-                      placeholder='Price'
-                      keyboardType='decimal-pad'
-                      onChangeText={(price) => this.setState({price})}
-                      value={this.state.price}
-                    />
-                    </View>);
-                }
-                    })()}
+            <View style={Styles.default.leftContainer}>
+              <Text style={Styles.alert.infoLeft}>Already bought?</Text>
+              <SwitchIOS
+                style={Styles.default.rightContainer, {margin: 10}}
+                onValueChange={(bought) => this.setState({bought})}
+                value={this.state.bought}
+              />
+            </View>
+                {(() => {
+                    if (this.state.bought) {
+                      return (
+                        <View>
+                        <TextInput
+                          style={Styles.input.textboxField}
+                          placeholder='Enter a Price'
+                          keyboardType='decimal-pad'
+                          onChangeText={(price) => this.setState({price})}
+                          value={this.state.price}
+                        />
+                        </View>);
+                    }
+                })()}
             <Button style={Styles.btn.btn} onPress={this.handleSubmit}>Add item</Button>
             {(() => {
               if (this.state.error !== null) {
